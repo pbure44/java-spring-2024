@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: java-spring-2024
+
+reference-data:
+  categories: Товари для дому, Будівельні інструменти
+  offices:
+    - name: "БудМаг-1"
+      contactNumber: "456-12-34"
+      address:
+        city: "Lviv"
+        street: "Heroiv UPA"
+        building: "14"
+    - name: "БудМаг-2"
+      contactNumber: "789-56-34"
+      address:
+        city: "Kyiv"
+        street: "Kiltseva"
+        building: "1"
+    - name: "БудМаг-3"
+      contactNumber: "123-45-34"
+      address:
+        city: "Dnipro"
+        street: "Budivelna"
+        building: "25"

@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: java-spring-2024
+#  profiles:
+#    active: store1, store2
+
