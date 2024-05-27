@@ -1,9 +1,11 @@
 services:
   postgres:
     image: 'postgres:latest'
+    container_name: pg-local
+    restart: always
     environment:
-      - 'POSTGRES_DB=mydatabase'
-      - 'POSTGRES_USER=myuser'
-      - 'POSTGRES_PASSWORD=secret'
+      POSTGRES_DB: "mydatabase"
+      POSTGRES_USER: "myuser"
+      POSTGRES_PASSWORD: "secret"
     ports:
       - "5433:5432"
