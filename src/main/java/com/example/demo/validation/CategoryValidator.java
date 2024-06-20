@@ -17,10 +17,6 @@ public class CategoryValidator implements ConstraintValidator<ValidCategory, Str
     @Value("${reference-data.categories:}#{T(java.util.Collections).emptyList()}")
     private List<String> categories;
 
-//    @Override
-//    public void initialize(ValidCategory constraintAnnotation) {
-//        ConstraintValidator.super.initialize(constraintAnnotation);
-//    }
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
