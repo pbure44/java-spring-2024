@@ -3,9 +3,13 @@ services:
     image: 'postgres:latest'
     container_name: pg-local
     restart: always
+    ports:
+      - "5433:5432"
     environment:
       POSTGRES_DB: "mydatabase"
       POSTGRES_USER: "myuser"
       POSTGRES_PASSWORD: "secret"
-    ports:
-      - "5433:5432"
+    volumes:
+      - ./pg_data:/var/lib/postgresql/data/data
+volumes:
+  pg_data:

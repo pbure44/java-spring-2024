@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.controller;
 
 import com.example.demo.properties.Office;
 import com.example.demo.properties.ReferenceDataProperties;

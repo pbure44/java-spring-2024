@@ -1,0 +1,48 @@
+databaseChangeLog:
+  - changeSet:
+      id: "1.0.1"
+      author: "pavel"
+#      dbms: "postgresql"
+      changes:
+        - createSequence:
+            sequenceName: "products_seq"
+        - createTable:
+            tableName: "products"
+            columns:
+              - column:
+                  name: "id"
+                  type: "bigint"
+                  constraints:
+                    primary: true
+                  defaultValueSequenceNext: "products_seq"
+              - column:
+                  name: "name"
+                  type: "text"
+              - column:
+                  name: "price"
+                  type: "numeric"
+              - column:
+                  name: "availability"
+                  type: "varchar(32)"
+  - changeSet:
+      id: "1.0.2"
+      author: "pavel"
+      #      dbms: "postgresql"
+      changes:
+        - addColumn:
+            tableName: "products"
+            columns:
+              - column:
+                  name: "description"
+                  type: "text"
+  - changeSet:
+      id: "1.0.3"
+      author: "pavel"
+      #      dbms: "postgresql"
+      changes:
+        - addColumn:
+            tableName: "products"
+            columns:
+              - column:
+                  name: "category"
+                  type: "text"
