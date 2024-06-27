@@ -53,4 +53,8 @@ public class ProductService {
                 .map(productMapper::mapToDto)
                 .toList();
     }
+
+    public boolean existsById(Long productId) {
+        return productRepository.existsById(productId);
+    }
 }

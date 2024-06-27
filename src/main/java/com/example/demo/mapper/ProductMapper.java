@@ -20,6 +20,7 @@ public class ProductMapper {
                 .availability(entity.getAvailability())
                 .description(entity.getDescription())
                 .category(entity.getCategory())
+                .owner(entity.getOwner())
                 .build();
     }
 
@@ -31,7 +32,7 @@ public class ProductMapper {
         product.setAvailability(dto.getAvailability());
         product.setDescription(dto.getDescription());
         product.setCategory(dto.getCategory());
-
+        product.setOwner(dto.getOwner());
         return product;
     }
 
@@ -48,8 +49,11 @@ public class ProductMapper {
         if (updateWith.getAvailability() != null) {
             target.setAvailability(updateWith.getAvailability());
         }
-        if (updateWith.getCategory() !=null){
+        if (updateWith.getCategory() != null) {
             target.setCategory(updateWith.getCategory());
+        }
+        if (updateWith.getOwner() != null) {
+            target.setOwner(updateWith.getOwner());
         }
         return target;
     }

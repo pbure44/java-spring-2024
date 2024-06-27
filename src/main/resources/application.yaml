@@ -13,3 +13,21 @@ spring:
       ddl-auto: none
   liquibase:
     enabled: true
+  data:
+    mongodb:
+      uri: "mongodb+srv://pbv444:Uriel_84@cluster0.wignxz5.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+      database: "product_reviews"
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: "egeon444@gmail.com"
+    password: "djhwjrbyrcytnrdx"
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+mail:
+  sender:
+    username: "egeon444@gmail.com"
