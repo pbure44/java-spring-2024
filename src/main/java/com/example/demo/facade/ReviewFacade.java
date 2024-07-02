@@ -2,6 +2,7 @@ package com.example.demo.facade;
 
 import com.example.demo.dto.ProductDto;
 import com.example.demo.dto.ReviewDto;
+import com.example.demo.dto.SendMailDto;
 import com.example.demo.service.MailService;
 import com.example.demo.service.ProductService;
 import com.example.demo.service.ReviewService;
@@ -22,7 +23,7 @@ public class ReviewFacade {
 
     private final MailService mailService;
 
-//    Variant 1 to =create review=
+    //    Variant 1 to =create review=
     public ReviewDto createReview(Long productId, ReviewDto reviewDto) {
         Optional<ProductDto> productOpt = productService.findProductById(productId);
         if (productOpt.isEmpty()) {
@@ -31,9 +32,13 @@ public class ReviewFacade {
 
         ReviewDto savedReview = reviewService.saveReview(productId, reviewDto);
         String subject = "New review for product %s".formatted(productOpt.get().getName());
-        String text = "You have new review with rating %s and text: $s".formatted(savedReview.getRating(), savedReview.getText());
+        String text = "You have new review with rating %s and text: %s".formatted(savedReview.getRating(), savedReview.getText());
 
-        mailService.sendMail(productOpt.get().getOwner(), subject, text);
+        mailService.sendMail(SendMailDto.builder()
+                .subject(subject)
+                .text(text)
+                .recipient(productOpt.get().getOwner())
+                .build());
         return savedReview;
     }
 

@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.dto.SendMailDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.MailSender;
@@ -15,14 +16,14 @@ public class MailService {
     @Value("${mail.sender.username}")
     private String mailSenderUsername;
 
-    public void sendMail(String to, String subject, String content) {
+    public void sendMail(SendMailDto sendMailDto) {
         SimpleMailMessage message = new SimpleMailMessage();
 
-        message.setSubject(subject);
-        message.setText(content);
+        message.setSubject(sendMailDto.getSubject());
+        message.setText(sendMailDto.getText());
 
         message.setFrom(mailSenderUsername);
-        message.setTo(to);
+        message.setTo(sendMailDto.getRecipient());
         mailSender.send(message);
     }
 }
