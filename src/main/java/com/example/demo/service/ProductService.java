@@ -6,6 +6,10 @@ import com.example.demo.mapper.ProductMapper;
 import com.example.demo.repository.ProductRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,6 +23,7 @@ public class ProductService {
     private final ProductRepository productRepository;
     private final ProductMapper productMapper;
 
+    @Secured({"ROLE_SELLER", "ROLE_ADMIN"})
     @Transactional
     public ProductDto createProduct(ProductDto productDto) {
 
@@ -43,6 +48,10 @@ public class ProductService {
     }
 
     public void deleteProduct(Long id) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        productRepository.findById(id)
+                .filter(product -> StringUtils.equalsIgnoreCase(product.getOwner(), authentication.getPrincipal().toString()))
+                .orElseThrow(() -> new IllegalStateException("Not your product"));
         productRepository.deleteById(id);
     }
 

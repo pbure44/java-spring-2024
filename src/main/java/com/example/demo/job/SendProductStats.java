@@ -26,7 +26,7 @@ public class SendProductStats {
     private final ReviewService reviewService;
     private final MailService mailService;
 
-    @Scheduled(fixedDelay = 1, timeUnit = TimeUnit.MINUTES)
+    @Scheduled(fixedDelay = 1, timeUnit = TimeUnit.HOURS)
     public void sendProductStats() {
         Map<String, List<Pair<ProductDto, Double>>> ownerWithAverageRatings = productService
                 .getProducts()

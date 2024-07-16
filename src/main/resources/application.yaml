@@ -31,3 +31,11 @@ spring:
 mail:
   sender:
     username: "egeon444@gmail.com"
+
+
+jwt:
+  secret: ewrn4894lkn5420935n482lkndfs31ubv8975fcc49hgf
+  access-token:
+    ttl-millis: 3600000
+  refresh-token:
+    ttl-millis: 360000000

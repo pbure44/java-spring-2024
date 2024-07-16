@@ -10,6 +10,6 @@ services:
       POSTGRES_USER: "myuser"
       POSTGRES_PASSWORD: "secret"
     volumes:
-      - ./pg_data:/var/lib/postgresql/data/data
+      - ./pg_data:/var/lib/postgresql/data
 volumes:
   pg_data:

@@ -4,6 +4,7 @@ import com.example.demo.dto.ProductDto;
 import com.example.demo.entity.Product;
 import com.example.demo.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -36,6 +37,7 @@ public class ProductMapper {
         return product;
     }
 
+    @PreAuthorize("#target.owner == authentication.principal")
     public Product updatePartially(Product target, ProductDto updateWith) {
         if (updateWith.getName() != null) {
             target.setName(updateWith.getName());

@@ -1,16 +1,30 @@
 package com.example.demo.controller;
+
 import com.example.demo.dto.ErrorDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
 import java.time.LocalDateTime;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 @RestControllerAdvice
 public class ErrorHandler {
+
+    @ExceptionHandler({Exception.class})
+    public ResponseEntity<ErrorDto> handleAnyException(Exception e) {
+        e.printStackTrace();
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(ErrorDto.builder()
+                        .details(e.getMessage())
+                        .timestamp(LocalDateTime.now())
+                        .build());
+    }
+
     @ExceptionHandler({NoSuchElementException.class})
     public ResponseEntity<ErrorDto> handleNoSuchElementException(NoSuchElementException e) {
         return ResponseEntity

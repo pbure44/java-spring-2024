@@ -7,17 +7,18 @@ import com.example.demo.service.ProductService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("v2")
-public class ProductControllerV2 {
-
+@RequestMapping("v1")
+public class ProductController {
     private final ProductService productService;
 
+    private final ReviewFacade reviewFacade;
 
     @GetMapping("/products/{id}")
     public ResponseEntity<ProductDto> getProduct(@PathVariable Long id) {
@@ -28,6 +29,7 @@ public class ProductControllerV2 {
     public ResponseEntity<List<ProductDto>> getProducts() {
         return ResponseEntity.ok(productService.getProducts());
     }
+
 
     @PostMapping("/products")
     public ResponseEntity<ProductDto> createProduct(@RequestBody @Valid ProductDto product) {
@@ -40,14 +42,12 @@ public class ProductControllerV2 {
     }
 
     @DeleteMapping("/products/{id}")
-    public ResponseEntity<ProductDto> deleteProduct(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
         productService.deleteProduct(id);
         return ResponseEntity.ok().build();
     }
 
-    //variant 2
-    private final ReviewFacade reviewFacade;
-
+    // Variant 2
     @GetMapping("/products/{productId}/reviews")
     public ResponseEntity<List<ReviewDto>> getReviews(@PathVariable("productId") Long productId) {
         return ResponseEntity.ok(reviewFacade.getReviews(productId));
