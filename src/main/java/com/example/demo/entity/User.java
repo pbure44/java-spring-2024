@@ -37,7 +37,6 @@ public class User implements UserDetails {
     @Column(name = "registered_at")
     private LocalDateTime registeredAt;
 
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role));
